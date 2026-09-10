@@ -203,7 +203,7 @@ python3.12 -m venv .venv
 ```
 Windows:
 ```bat
-py -m pip install .\unigrid_pkg_win\for_redistribution_files_only
+py -m pip install .\unigrid_pkg_win\for_testing
 py -m pip install pandas openpyxl
 py run_unigrid.py
 ```
