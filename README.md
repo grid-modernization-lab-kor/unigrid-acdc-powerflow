@@ -129,9 +129,18 @@ Running one reproduces the corresponding figure in the paper.
 | `mg71_S3_gen_qlimit.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | Generator reactive-power limit |
 | `mg71_S4_ic_limit.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | IC output limit |
 | `pandapower_3w.xlsx` | pandapower multi-voltage example network | 30 / — | — | Three-winding transformer cross-validation (AC-only) |
+| `case2869_mtdc_droop.xlsx` | 2869-bus PEGASE with two MTDC grids | 2869 / 7 | 7 | All ICs in P--Vdc droop (supplementary material) |
 
 The four microgrid files describe the same network; each turns on one control
-element so its effect can be read against the baseline.
+element so its effect can be read against the baseline. The last two files
+belong to the supplementary material: `pandapower_3w.xlsx` validates the
+three-winding transformer model, and `case2869_mtdc_droop.xlsx` is the large
+transmission system used for the comparison with a sequential method.
+
+The engine ships with the convergence tolerance used for the paper
+(1e-6 for the hybrid and AC-only solvers). Running a case as it comes
+reproduces the deviations reported in the paper; no settings need to be
+changed.
 
 ### Other example inputs
 
