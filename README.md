@@ -128,7 +128,7 @@ Running one reproduces the corresponding figure in the paper.
 | `mg71_S2_deadband.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | Generator droop deadband |
 | `mg71_S3_gen_qlimit.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | Generator reactive-power limit |
 | `mg71_S4_ic_limit.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | IC output limit |
-| `pandapower_3w.xlsx` | pandapower multi-voltage example network | 30 / — | — | Three-winding transformer cross-validation (AC-only) |
+| `pandapower_3w.xlsx` | AC/DC system modified from pandapower's multi-voltage example | 24 / 7 | 3 | Three-winding transformer validation |
 | `case2869_mtdc_droop.xlsx` | 2869-bus PEGASE with two MTDC grids | 2869 / 7 | 7 | All ICs in P--Vdc droop (supplementary material) |
 
 The four microgrid files describe the same network; each turns on one control

@@ -29,7 +29,7 @@ GRID = "grids/rts96_scenario1_constant_vdc.xlsx"     # AC/DC Hybrid  50/7
 # GRID = "grids/mg71_S2_deadband.xlsx"               # AC/DC Hybrid  38/33
 # GRID = "grids/mg71_S3_gen_qlimit.xlsx"             # AC/DC Hybrid  38/33
 # GRID = "grids/mg71_S4_ic_limit.xlsx"               # AC/DC Hybrid  38/33
-# GRID = "grids/pandapower_3w.xlsx"                  # UniGrid Excel → AC-only, 3-winding
+# GRID = "grids/pandapower_3w.xlsx"                  # AC/DC Hybrid  24/7, 3-winding
 #    Other examples.
 # GRID = "grids/stagg5_scenario1_constant_vdc.xlsx"  # AC/DC Hybrid   5/3
 # GRID = "grids/stagg5_scenario2_droop.xlsx"         # AC/DC Hybrid   5/3
