@@ -11,6 +11,9 @@ moving.
   (`python run_unigrid.py grids/cigre_scenario2_droop.xlsx`), so a case runs
   without editing the SETTINGS block. The command line wins over the block.
 - This changelog, and a citation section in the README.
+- `reproduce/reproduce.py` rebuilds the quantities plotted in the validation
+  figures and checks them against the external references and against the
+  solution stored at v1.0.1-paper.
 
 ### Changed
 - Results are saved under `results/<grid name>/` instead of one shared folder,

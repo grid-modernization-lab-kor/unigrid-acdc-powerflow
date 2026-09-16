@@ -188,6 +188,30 @@ on both systems.
 
 Sources for these examples are listed under [Acknowledgements](#acknowledgements).
 
+## Reproducing the paper's figures
+
+`reproduce/reproduce.py` solves the case studies with the shipped engine and
+rebuilds the quantities plotted in the validation figures.
+
+```bash
+python reproduce/reproduce.py
+```
+
+It prints one row per scenario and quantity, with two checks.
+
+| Column | Meaning |
+|--------|---------|
+| `reference` | Deviation from the external solution the paper compares against (PSCAD for the CIGRE system, pandapower for the three-winding system). This is the number quoted in the paper. |
+| `reported` | The deviation the paper reports, and whether the computed one stays within it. |
+| `regression` | Deviation from the solution this repository produced at release `v1.0.1-paper`. A non-zero value means this machine solves the case differently. |
+
+The computed series are written to `reproduce/output/`, and the stored solutions
+live in `reproduce/reference/`.
+
+The MatACDC comparison of Fig. 6 is not rebuilt. MatACDC is a third-party MATLAB
+package that this repository does not ship, so only the regression check runs
+for that figure.
+
 ## Files
 
 | File | Role |
@@ -202,6 +226,7 @@ Sources for these examples are listed under [Acknowledgements](#acknowledgements
 | `_mac_worker.py` | Internal helper used on macOS only |
 | `grids/` | Example inputs (Excel, MATPOWER, PSS/E) |
 | `CHANGELOG.md` | What changed in each release |
+| `reproduce/` | Rebuild the quantities plotted in the paper's validation figures |
 | `unigrid_pkg_win/` | Compiled solver for Windows (all modes) |
 | `unigrid_pkg_mac/` | Compiled solver for macOS (all modes) |
 | `docs/` | README figures |
