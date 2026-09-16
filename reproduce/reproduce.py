@@ -38,6 +38,7 @@ RESOLUTION = 1e-6
 
 REF = Path(__file__).resolve().parent / "reference"
 OUT = Path(__file__).resolve().parent / "output"
+FIGDIR = Path(__file__).resolve().parent / "figures"
 
 # Grid file per scenario, grouped by the figure it feeds.
 FIGURES = {
@@ -107,7 +108,65 @@ def load_reference(name, column):
             for (s, q), g in df.groupby(["scenario", "quantity"], sort=False)}
 
 
-def main(write_reference=False):
+def plot(figure, spec, series, external):
+    """Redraw the figure from the rebuilt series. Needs matplotlib."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    scenarios = list(spec["scenarios"])
+    FIGDIR.mkdir(exist_ok=True)
+    name = spec["slug"] + ".png"
+    # Fig. 6 plots deviations from MatACDC, which is not rebuilt here, so what
+    # is drawn for it is the solution the deviations were taken from.
+    lead = f"{figure} rebuilt" if (external or figure == "Fig. 10") else f"Solution behind {figure}"
+
+    if figure == "Fig. 10":
+        # One panel: the voltage profile of every bus, one line per scenario.
+        fig, ax = plt.subplots(figsize=(7.2, 2.8), dpi=200)
+        for scenario, style in zip(scenarios, ["-", "--", ":", "-."]):
+            vm = series[(scenario, "vm_pu")]
+            ax.plot(range(1, len(vm) + 1), vm, style, lw=1.2, label=scenario)
+        ax.set_xlabel("Bus"); ax.set_ylabel("Voltage magnitude |V| [p.u.]")
+        ax.grid(alpha=0.25); ax.legend(ncol=4, fontsize=8, frameon=False)
+        ax.set_title(f"{lead}: {spec['system']}", fontsize=9)
+        fig.tight_layout(); fig.savefig(FIGDIR / name); plt.close(fig)
+        return name
+
+    # The validation figures: magnitude on the left axis, angle on the right,
+    # the external solution solid and this solution dashed.
+    fig, axes = plt.subplots(len(scenarios), 1, figsize=(7.2, 2.6 * len(scenarios)),
+                             dpi=200, squeeze=False)
+    for ax, scenario in zip(axes[:, 0], scenarios):
+        vm = series[(scenario, "vm_pu")]
+        ang = series[(scenario, "angle_deg")]
+        if external:
+            ref = external[(scenario, "vm_pu")]
+            ax.plot(range(1, len(ref) + 1), ref, "-", color="0.35", lw=1.1,
+                    label=f"|V| {spec['external'][1]}")
+        ax.plot(range(1, len(vm) + 1), vm, "--", color="tab:blue", lw=1.1,
+                label="|V| rebuilt")
+        ax.set_ylabel("|V| [p.u.]"); ax.grid(alpha=0.25)
+        ax.legend(loc="lower left", fontsize=7, frameon=False)
+        ax2 = ax.twinx()
+        if external:
+            refa = external[(scenario, "angle_deg")]
+            ax2.plot(range(1, len(refa) + 1), refa, "-", color="darkred", lw=0.9,
+                     label=f"angle {spec['external'][1]}")
+        ax2.plot(range(1, len(ang) + 1), ang, "--", color="tab:red", lw=0.9,
+                 label="angle rebuilt")
+        ax2.legend(loc="upper right", fontsize=7, frameon=False)
+        ax2.set_ylabel("Angle [deg]", color="tab:red")
+        ax2.tick_params(axis="y", colors="tab:red")
+        title = f"{lead}: {spec['system']}"
+        ax.set_title(title if len(scenarios) == 1 else f"{title} - Scenario {scenario}",
+                     fontsize=9)
+    axes[-1, 0].set_xlabel("Bus")
+    fig.tight_layout(); fig.savefig(FIGDIR / name); plt.close(fig)
+    return name
+
+
+def main(write_reference=False, make_plots=False):
     OUT.mkdir(exist_ok=True)
     rows = []
     for figure, spec in FIGURES.items():
@@ -117,8 +176,11 @@ def main(write_reference=False):
         if not write_reference and (REF / ref_name).exists():
             stored = load_reference(ref_name, "proposed")
         computed = []
+        drawn = {}
         for scenario, grid in spec["scenarios"].items():
             series, iters = solve(grid)
+            for quantity, values in series.items():
+                drawn[(scenario, quantity)] = values
             for quantity, values in series.items():
                 for i, v in enumerate(values, start=1):
                     computed.append([scenario, quantity, i, v])
@@ -139,6 +201,9 @@ def main(write_reference=False):
         target = (REF if write_reference else OUT) / ref_name
         frame.to_csv(target, index=False)
         print(f"{figure:8s} {spec['system']:42s} -> {target.relative_to(ROOT)}")
+        if make_plots:
+            drawn_name = plot(figure, spec, drawn, external)
+            print(f"{'':8s} {'':42s} -> {(FIGDIR / drawn_name).relative_to(ROOT)}")
 
     print()
     print(pd.DataFrame(rows).to_string(index=False))
@@ -147,4 +212,5 @@ def main(write_reference=False):
 
 
 if __name__ == "__main__":
-    main(write_reference="--write-reference" in sys.argv)
+    main(write_reference="--write-reference" in sys.argv,
+         make_plots="--plot" in sys.argv)

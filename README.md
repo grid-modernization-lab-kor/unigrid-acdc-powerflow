@@ -212,6 +212,49 @@ The MatACDC comparison of Fig. 6 is not rebuilt. MatACDC is a third-party MATLAB
 package that this repository does not ship, so only the regression check runs
 for that figure.
 
+### The figures these numbers belong to
+
+The validation figures of the paper and of the supplementary material, typeset
+from the same source that produced the article.
+
+**Fig. 6 — modified IEEE RTS-96.** Deviation from MatACDC over every AC and DC
+bus, in both IC control scenarios.
+
+![Fig. 6](docs/paper/fig06_case24_validation.png)
+
+**Fig. 8 — modified CIGRE benchmark.** The EMT reference and this solution
+across the three voltage levels, in both DC/DC control scenarios.
+
+![Fig. 8](docs/paper/fig08_cigre_validation.png)
+
+**Fig. 10 — 71-bus islanded microgrid.** The baseline and the three scenarios
+that each add one outer-loop element.
+
+![Fig. 10](docs/paper/fig10_mg71_validation.png)
+
+**Fig. S3 — AC/DC three-winding transformer system.** The pandapower reference
+and this solution.
+
+![Fig. S3](docs/paper/figS3_3w_validation.png)
+
+Adding `--plot` draws the rebuilt series as well, into `reproduce/figures/`.
+That needs matplotlib, which the one-time setup does not install
+(`pip install matplotlib`).
+
+```bash
+python reproduce/reproduce.py --plot
+```
+
+> © 2026 IEEE. Personal use of this material is permitted. Permission from IEEE
+> must be obtained for all other uses, in any current or future media, including
+> reprinting/republishing this material for advertising or promotional purposes,
+> creating new collective works, for resale or redistribution to servers or
+> lists, or reuse of any copyrighted component of this work in other works.
+>
+> The figures above are taken from the accepted version of the companion paper,
+> not from the version of record. The DOI is added here once the article appears
+> on IEEE Xplore.
+
 ## Files
 
 | File | Role |
@@ -229,7 +272,7 @@ for that figure.
 | `reproduce/` | Rebuild the quantities plotted in the paper's validation figures |
 | `unigrid_pkg_win/` | Compiled solver for Windows (all modes) |
 | `unigrid_pkg_mac/` | Compiled solver for macOS (all modes) |
-| `docs/` | README figures |
+| `docs/` | README figures, and the paper's validation figures under `docs/paper/` |
 
 <details><summary>Manual setup (without the scripts)</summary>
 

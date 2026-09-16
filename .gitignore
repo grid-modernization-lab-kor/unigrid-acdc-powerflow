@@ -21,3 +21,4 @@ PackagingLog.html
 *_backup_*/
 *_backup_*.py
 reproduce/output/
+reproduce/figures/

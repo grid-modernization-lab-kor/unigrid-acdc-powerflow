@@ -13,7 +13,9 @@ moving.
 - This changelog, and a citation section in the README.
 - `reproduce/reproduce.py` rebuilds the quantities plotted in the validation
   figures and checks them against the external references and against the
-  solution stored at v1.0.1-paper.
+  solution stored at v1.0.1-paper, and redraws them with `--plot`.
+- The validation figures of the paper and the supplementary material, under
+  `docs/paper/`, with the IEEE copyright notice.
 
 ### Changed
 - Results are saved under `results/<grid name>/` instead of one shared folder,
