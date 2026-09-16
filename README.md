@@ -44,7 +44,17 @@ GRID = "grids/rts96_scenario1_constant_vdc.xlsx"  # AC/DC Hybrid
 
 The mode is picked automatically from the file, so you only choose the grid. The
 results print in the terminal (AC / DC / branch / VSC tables, whichever the mode
-produces) and are saved as CSV files under `results/`.
+produces) and are saved as CSV files under `results/<grid name>/`.
+
+**Or run one case straight from a terminal**, without editing the file. A grid
+given on the command line wins over the SETTINGS block, so the case studies of
+the paper can be run one after another:
+
+```bash
+python run_unigrid.py grids/rts96_scenario1_constant_vdc.xlsx
+python run_unigrid.py grids/cigre_scenario2_droop.xlsx
+python run_unigrid.py grids/mg71_S3_gen_qlimit.xlsx
+```
 
 **Example run** — `stagg5_scenario2_droop.xlsx` (a 5-bus AC / 3-bus DC hybrid grid):
 
@@ -182,7 +192,7 @@ Sources for these examples are listed under [Acknowledgements](#acknowledgements
 
 | File | Role |
 |------|------|
-| **`run_unigrid.py`** | ▶ Edit the SETTINGS block and run this |
+| **`run_unigrid.py`** | ▶ Edit the SETTINGS block and run this, or pass a grid file as an argument |
 | `run_unigrid_scenarios.py` | Loop / scenario example (a template to adapt) |
 | `setup_mac.sh` / `setup_windows.bat` | One-time setup (Python + deps) |
 | `run_mac.sh` / `run_windows.bat` | Run from the terminal (alternative to ▶) |
@@ -191,6 +201,7 @@ Sources for these examples are listed under [Acknowledgements](#acknowledgements
 | `acdc_engine.py` | Engine: run the power flow (auto-selects the OS package) |
 | `_mac_worker.py` | Internal helper used on macOS only |
 | `grids/` | Example inputs (Excel, MATPOWER, PSS/E) |
+| `CHANGELOG.md` | What changed in each release |
 | `unigrid_pkg_win/` | Compiled solver for Windows (all modes) |
 | `unigrid_pkg_mac/` | Compiled solver for macOS (all modes) |
 | `docs/` | README figures |
@@ -226,6 +237,18 @@ Planned work:
 
 Questions, bug reports, and suggestions are welcome via
 [GitHub Issues](https://github.com/Hamin-Chang/unigrid-acdc-powerflow/issues).
+
+## Citing UniGrid
+
+If UniGrid is used in published work, cite the companion paper:
+
+> H. Chang, G.-S. Lee, F. Teng, and J.-W. Chang, "Generalized and Unified Power
+> Flow Analysis for Converter-Dominated AC/DC Power Grids," submitted to *IEEE
+> Transactions on Power Systems* (under review).
+
+This repository is not static, so name the release the results came from, for
+example `v1.0.1-paper`. Each release is tagged, and [CHANGELOG.md](CHANGELOG.md)
+records what changed between them.
 
 ## License
 

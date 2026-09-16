@@ -4,8 +4,14 @@ HOW TO USE: edit the SETTINGS block below, then press Run (the ▶ button).
 The grid file may be a UniGrid Excel (.xlsx), a MATPOWER m-file (.m), or a
 PSS/E raw file (.raw); the mode (Hybrid / AC-only / DC-only) is detected
 automatically from the file.
+
+A grid file given on the command line wins over the SETTINGS block, so one
+case can be run without editing this file:
+
+    python run_unigrid.py grids/cigre_scenario1_constant_vdc.xlsx
 """
 
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -45,6 +51,9 @@ GRID = "grids/rts96_scenario1_constant_vdc.xlsx"     # AC/DC Hybrid  50/7
 #    just below where `case` is loaded (see "apply settings" section).
 # ════════════════════════════════════════════════════════════════
 
+
+if len(sys.argv) > 1:
+    GRID = sys.argv[1]
 
 here = Path(__file__).resolve().parent
 pd.set_option("display.max_rows", None)
@@ -108,7 +117,7 @@ if has_vsc:
     print(vsc_pow.to_string(index=False))
 
 # ── Save CSV (first row = unit-labeled headers) ─────────────────
-out = here / "results" / "runUniGrid_ex"
+out = here / "results" / Path(GRID).stem
 out.mkdir(parents=True, exist_ok=True)
 if has_ac:
     ac.to_csv(out / "AC_result.csv", index=False)
