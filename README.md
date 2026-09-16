@@ -1,4 +1,4 @@
-# UniGrid — ACDC Power Flow (Python)
+# UniGrid — AC/DC Power Flow (Python)
 
 > AC · DC · hybrid AC/DC power flow — one compiled package, three input formats.
 
