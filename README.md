@@ -2,6 +2,8 @@
 
 > AC · DC · hybrid AC/DC power flow — one compiled package, three input formats.
 
+> Companion code for the paper *Generalized and Unified Power Flow Analysis for Converter-Dominated AC/DC Power Grids* (H. Chang et al., under review).
+
 ![Supported input formats](docs/input-formats.svg)
 
 **UniGrid** is a power flow solver for AC, DC, and hybrid AC/DC grids, compiled from
@@ -211,8 +213,8 @@ py run_unigrid.py
 
 ## Project status & roadmap
 
-UniGrid is **actively maintained** by its author (Hamin Chang). A companion research
-paper describing the AC/DC formulation is in preparation.
+UniGrid is **actively maintained** by its author (Hamin Chang). The companion research
+paper, *Generalized and Unified Power Flow Analysis for Converter-Dominated AC/DC Power Grids*, is under review. A link to the published paper will be added here.
 
 Planned work:
 
