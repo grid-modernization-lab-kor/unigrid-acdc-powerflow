@@ -159,7 +159,7 @@ three-winding transformer model, and `case2869_mtdc_droop.xlsx` is the large
 transmission system used to evaluate scalability.
 
 The engine ships with the convergence tolerance used for the paper
-(1e-6 for the hybrid and AC-only solvers). Running a case as it comes
+(1e-6 for the hybrid, AC-only, and DC-only solvers). Running a case as it comes
 reproduces the deviations reported in the paper; no settings need to be
 changed.
 
@@ -323,8 +323,8 @@ If UniGrid is used in published work, cite the companion paper:
 > Flow Framework for Converter-Dominated AC/DC Power Grids," submitted to *IEEE
 > Transactions on Power Systems* (under review).
 
-This repository is not static, so name the release the results came from, for
-example `v1.0.1-paper`. Each release is tagged, and [CHANGELOG.md](CHANGELOG.md)
+This repository is not static, so name the release the results came from.
+Each release is tagged, and [CHANGELOG.md](CHANGELOG.md)
 records what changed between them.
 
 ## License

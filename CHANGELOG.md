@@ -13,8 +13,8 @@ moving.
 - This changelog, and a citation section in the README.
 - `reproduce/reproduce.py` rebuilds the quantities plotted in the validation
   figures and checks them against the external references and against the
-  solution stored at v1.0.1-paper, and redraws them with `--plot`.
-- The validation figures of the paper and the supplementary material, under
+  solution stored with this release, and redraws them with `--plot`.
+- The validation figures of the paper and its Appendix, under
   `docs/paper/`, with the IEEE copyright notice.
 
 ### Changed
