@@ -2,7 +2,7 @@
 
 > AC · DC · hybrid AC/DC power flow — one compiled package, three input formats.
 
-> Companion code for the paper *Generalized and Unified Power Flow Analysis for Converter-Dominated AC/DC Power Grids* (H. Chang et al., under review).
+> Companion code for the paper *Generalized and Unified Power Flow Framework for Converter-Dominated AC/DC Power Grids* (H. Chang et al., under review).
 
 ![Supported input formats](docs/input-formats.svg)
 
@@ -105,6 +105,15 @@ UniGrid picks the solver mode automatically from whatever file `GRID` points to:
   https://www.mathworks.com/products/compiler/matlab-runtime.html
 - **Python 3.9 – 3.12** (3.13+ is not supported). The setup script handles this for you.
 
+Known issues:
+
+- With an Anaconda Python, Windows may show a MATLAB "Access violation" report
+  when the script exits. It happens after all results are written, while Python
+  shuts down alongside the MATLAB Runtime, and does not affect the results. A
+  python.org Python avoids it.
+- On Windows, the engine's progress messages are in Korean and may appear as
+  broken characters in the console. The results are not affected.
+
 ## Changing the grid and settings
 
 Everything you normally change lives in the **SETTINGS block** at the top of
@@ -141,13 +150,13 @@ Running one reproduces the corresponding figure in the paper.
 | `mg71_S3_gen_qlimit.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | Generator reactive-power limit |
 | `mg71_S4_ic_limit.xlsx` | 71-bus islanded microgrid | 38 / 33 | 3 | IC output limit |
 | `pandapower_3w.xlsx` | AC/DC system modified from pandapower's multi-voltage example | 24 / 7 | 3 | Three-winding transformer validation |
-| `case2869_mtdc_droop.xlsx` | 2869-bus PEGASE with two MTDC grids | 2869 / 7 | 7 | All ICs in P--Vdc droop (supplementary material) |
+| `case2869_mtdc_droop.xlsx` | 2869-bus PEGASE with two MTDC grids | 2869 / 7 | 7 | All ICs in P--Vdc droop (Appendix) |
 
 The four microgrid files describe the same network; each turns on one control
 element so its effect can be read against the baseline. The last two files
-belong to the supplementary material: `pandapower_3w.xlsx` validates the
+belong to the Appendix: `pandapower_3w.xlsx` validates the
 three-winding transformer model, and `case2869_mtdc_droop.xlsx` is the large
-transmission system used for the comparison with a sequential method.
+transmission system used to evaluate scalability.
 
 The engine ships with the convergence tolerance used for the paper
 (1e-6 for the hybrid and AC-only solvers). Running a case as it comes
@@ -214,7 +223,7 @@ for that figure.
 
 ### The figures these numbers belong to
 
-The validation figures of the paper and of the supplementary material, typeset
+The validation figures of the paper and of its Appendix, typeset
 from the same source that produced the article.
 
 **Fig. 6 — modified IEEE RTS-96.** Deviation from MatACDC over every AC and DC
@@ -232,10 +241,10 @@ that each add one outer-loop element.
 
 ![Fig. 10](docs/paper/fig10_mg71_validation.png)
 
-**Fig. S3 — AC/DC three-winding transformer system.** The pandapower reference
+**Fig. C2 — AC/DC three-winding transformer system (Appendix).** The pandapower reference
 and this solution.
 
-![Fig. S3](docs/paper/figS3_3w_validation.png)
+![Fig. C2](docs/paper/figS3_3w_validation.png)
 
 Adding `--plot` draws the rebuilt series as well, into `reproduce/figures/`.
 That needs matplotlib, which the one-time setup does not install
@@ -293,7 +302,7 @@ py run_unigrid.py
 ## Project status & roadmap
 
 UniGrid is **actively maintained** by its author (Hamin Chang). The companion research
-paper, *Generalized and Unified Power Flow Analysis for Converter-Dominated AC/DC Power Grids*, is under review. A link to the published paper will be added here.
+paper, *Generalized and Unified Power Flow Framework for Converter-Dominated AC/DC Power Grids*, is under review. A link to the published paper will be added here.
 
 Planned work:
 
@@ -304,14 +313,14 @@ Planned work:
 - **Packaging cleanup** — slim the distributed package and streamline setup.
 
 Questions, bug reports, and suggestions are welcome via
-[GitHub Issues](https://github.com/Hamin-Chang/unigrid-acdc-powerflow/issues).
+[GitHub Issues](https://github.com/grid-modernization-lab-kor/unigrid-acdc-powerflow/issues).
 
 ## Citing UniGrid
 
 If UniGrid is used in published work, cite the companion paper:
 
-> H. Chang, G.-S. Lee, F. Teng, and J.-W. Chang, "Generalized and Unified Power
-> Flow Analysis for Converter-Dominated AC/DC Power Grids," submitted to *IEEE
+> H. Chang, F. Teng, G.-S. Lee, and J.-W. Chang, "Generalized and Unified Power
+> Flow Framework for Converter-Dominated AC/DC Power Grids," submitted to *IEEE
 > Transactions on Power Systems* (under review).
 
 This repository is not static, so name the release the results came from, for

@@ -18,9 +18,33 @@ moving.
   `docs/paper/`, with the IEEE copyright notice.
 
 ### Changed
+- Both compiled packages (`unigrid_pkg_mac`, `unigrid_pkg_win`) now carry
+  solver v17 instead of v11. Among other changes, it models DC loads as ZIP
+  loads and limits the active power of an interlinking converter at its
+  apparent-power capability. Solved with both
+  packages, the twelve `grids/*.xlsx` cases agree to within a relative 1e-9 and
+  take the same number of iterations.
+- The DC Bus Data sheet of the paper's case files now lists the ZIP shares
+  `Z_p`, `I_p`, and `P_p` of each DC load (eight columns instead of six).
+  Files in the old six-column layout still load.
 - Results are saved under `results/<grid name>/` instead of one shared folder,
   so running several cases no longer overwrites the previous one.
 - The README names the companion paper and its review state.
+
+### Fixed
+- `grids/rts96_scenario1_constant_vdc.xlsx` and `grids/rts96_scenario2_droop.xlsx`
+  are now the inputs the paper used. The earlier files stopped at the input check
+  of the newer solver, because an interlinking converter and a generator both
+  held the voltage of AC bus 215.
+- `grids/mg71_S1_baseline.xlsx` to `grids/mg71_S4_ic_limit.xlsx` follow the
+  redesigned 71-bus microgrid of the paper.
+- `grids/pandapower_3w.xlsx` is the Appendix version, with the frequency range
+  set symmetric about the nominal value ([0.98, 1.02] p.u.).
+- `setup_windows.bat` installed a package folder that is not in the repository;
+  it now installs `unigrid_pkg_win/for_testing`.
+- The README follows the paper's current title and author order, calls the
+  supplementary document the Appendix, and points to the current repository
+  address.
 
 ## [v1.0.1-paper] - 2026-09-15
 

@@ -31,7 +31,7 @@ echo [UniGrid] Using %PYEXE%
 %PYEXE% --version
 echo.
 
-%PYEXE% -m pip install ".\unigrid_pkg_win\for_redistribution_files_only"
+%PYEXE% -m pip install ".\unigrid_pkg_win\for_testing"
 if errorlevel 1 goto :failed
 %PYEXE% -m pip install pandas openpyxl
 if errorlevel 1 goto :failed
