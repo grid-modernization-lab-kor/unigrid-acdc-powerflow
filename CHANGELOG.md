@@ -24,6 +24,14 @@ moving.
   apparent-power capability. Solved with both
   packages, the twelve `grids/*.xlsx` cases agree to within a relative 1e-9 and
   take the same number of iterations.
+- All three solvers (hybrid, AC-only, DC-only) default to a convergence
+  tolerance of 1e-6, the tolerance behind the paper's numbers.
+- `reproduce/` checks the three-winding system against the reference used for
+  the Appendix (now stored at full precision, as `figC2_*`), quotes the
+  Appendix deviations, and stores the solution of this release for the
+  regression check.
+- The validation figures under `docs/paper/` are typeset from the current
+  paper and Appendix (Fig. 6, 8, 10, and C2).
 - The DC Bus Data sheet of the paper's case files now lists the ZIP shares
   `Z_p`, `I_p`, and `P_p` of each DC load (eight columns instead of six).
   Files in the old six-column layout still load.

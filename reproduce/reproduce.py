@@ -10,8 +10,8 @@ figures plot are rebuilt. Two kinds of check are printed.
   reference   the external solution the paper compares against (PSCAD for the
               CIGRE system, pandapower for the three-winding system). The
               deviation printed here is the one quoted in the paper.
-  regression  the solution this repository produced at release v1.0.1-paper,
-              stored under reproduce/reference/. A non-zero value means this
+  regression  the solution stored under reproduce/reference/ with the current
+              release. A non-zero value means this
               machine solves the case differently.
 
 The MatACDC comparison of Fig. 6 is not rebuilt here. MatACDC is a third-party
@@ -74,12 +74,12 @@ FIGURES = {
         },
         "reported": {},
     },
-    "Fig. S3": {
-        "slug": "figS3",
+    "Fig. C2": {
+        "slug": "figC2",
         "system": "AC/DC three-winding transformer system",
-        "external": ("figS3_3w_pandapower.csv", "pandapower"),
+        "external": ("figC2_3w_pandapower.csv", "pandapower"),
         "scenarios": {"S": "grids/pandapower_3w.xlsx"},
-        "reported": {"vm_pu": 3.66e-6, "angle_deg": 1.38e-4},
+        "reported": {"vm_pu": 7.8e-7, "angle_deg": 8.9e-5},
     },
 }
 

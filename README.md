@@ -212,7 +212,7 @@ It prints one row per scenario and quantity, with two checks.
 |--------|---------|
 | `reference` | Deviation from the external solution the paper compares against (PSCAD for the CIGRE system, pandapower for the three-winding system). This is the number quoted in the paper. |
 | `reported` | The deviation the paper reports, and whether the computed one stays within it. |
-| `regression` | Deviation from the solution this repository produced at release `v1.0.1-paper`. A non-zero value means this machine solves the case differently. |
+| `regression` | Deviation from the solution stored under `reproduce/reference/` with the current release. A non-zero value means this machine solves the case differently. |
 
 The computed series are written to `reproduce/output/`, and the stored solutions
 live in `reproduce/reference/`.
@@ -244,7 +244,7 @@ that each add one outer-loop element.
 **Fig. C2 — AC/DC three-winding transformer system (Appendix).** The pandapower reference
 and this solution.
 
-![Fig. C2](docs/paper/figS3_3w_validation.png)
+![Fig. C2](docs/paper/figC2_3w_validation.png)
 
 Adding `--plot` draws the rebuilt series as well, into `reproduce/figures/`.
 That needs matplotlib, which the one-time setup does not install
