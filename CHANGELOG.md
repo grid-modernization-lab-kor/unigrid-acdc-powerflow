@@ -40,6 +40,10 @@ moving.
 - The README names the companion paper and its review state.
 
 ### Fixed
+- The magnetizing susceptance of a three-winding transformer now scales with
+  1/ω, as an inductive shunt and as stated in the Appendix; it scaled with ω
+  before. Results change only when the frequency is solved and the transformer
+  has a no-load current, which none of the shipped cases has.
 - `grids/rts96_scenario1_constant_vdc.xlsx` and `grids/rts96_scenario2_droop.xlsx`
   are now the inputs the paper used. The earlier files stopped at the input check
   of the newer solver, because an interlinking converter and a generator both
