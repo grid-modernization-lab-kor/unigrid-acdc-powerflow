@@ -4,6 +4,8 @@
 
 > Companion code for the paper *Generalized and Unified Power Flow Framework for Converter-Dominated AC/DC Power Grids* (H. Chang et al., under review).
 
+> Appendix of the paper: [doi:10.5281/zenodo.23232932](https://doi.org/10.5281/zenodo.23232932) · [PDF](docs/paper/Chang2026_Appendix_for_Generalized_and_Unified_Power_Flow_Framework.pdf) (CC BY 4.0).
+
 ![Supported input formats](docs/input-formats.svg)
 
 **UniGrid** is a power flow solver for AC, DC, and hybrid AC/DC grids, compiled from
@@ -281,7 +283,7 @@ python reproduce/reproduce.py --plot
 | `reproduce/` | Rebuild the quantities plotted in the paper's validation figures |
 | `unigrid_pkg_win/` | Compiled solver for Windows (all modes) |
 | `unigrid_pkg_mac/` | Compiled solver for macOS (all modes) |
-| `docs/` | README figures, and the paper's validation figures under `docs/paper/` |
+| `docs/` | README figures, and the paper's validation figures and Appendix PDF under `docs/paper/` |
 
 <details><summary>Manual setup (without the scripts)</summary>
 
